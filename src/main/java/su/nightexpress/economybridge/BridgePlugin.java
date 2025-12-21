@@ -37,6 +37,22 @@ public class BridgePlugin extends NightPlugin implements ImprovedCommands {
         this.currencyManager.setup();
     }
 
+    public void runFoliaTask(@NotNull Runnable runnable) {
+        this.getFoliaLib().getImpl().runNextTick(task -> runnable.run());
+    }
+
+    public void runFoliaTaskAsync(@NotNull Runnable runnable) {
+        this.getFoliaLib().getImpl().runAsync(task -> runnable.run());
+    }
+
+    public void runFoliaTaskLater(@NotNull Runnable runnable, long delay) {
+        this.getFoliaLib().getImpl().runLater(task -> runnable.run(), delay * 50L, java.util.concurrent.TimeUnit.MILLISECONDS);
+    }
+
+    public void runFoliaTaskTimer(@NotNull Runnable runnable, long delay, long period) {
+        this.getFoliaLib().getImpl().runTimer(task -> runnable.run(), delay * 50L, period * 50L, java.util.concurrent.TimeUnit.MILLISECONDS);
+    }
+
     @Override
     public void disable() {
         if (this.currencyManager != null) this.currencyManager.shutdown();

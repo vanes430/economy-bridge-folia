@@ -68,7 +68,7 @@ public class CurrencyManager extends AbstractManager<BridgePlugin> {
         this.addListener(new CurrencyListener(this.plugin, this));
 
         // Clean up when all plugins are loaded.
-        this.plugin.runTask(task -> {
+        this.plugin.runFoliaTask(() -> {
             this.pluginProviders.clear();
             this.currencyConfig.saveChanges();
             this.itemsConfig.saveChanges();
@@ -101,7 +101,6 @@ public class CurrencyManager extends AbstractManager<BridgePlugin> {
 
     private void loadProviders() {
         this.pluginProviders.put(CurrencyPlugins.PLAYER_POINTS, () -> this.loadCurrency(CurrencyId.PLAYER_POINTS, PlayerPointsCurrency::new));
-        this.pluginProviders.put(CurrencyPlugins.BEAST_TOKENS, () -> this.loadCurrency(CurrencyId.BEAST_TOKENS, BeastTokensCurrency::new));
         this.pluginProviders.put(CurrencyPlugins.VOTING_PLUGIN, () -> this.loadCurrency(CurrencyId.VOTING_PLUGIN, VotingCurrency::new));
         this.pluginProviders.put(CurrencyPlugins.ELITEMOBS, () -> this.loadCurrency(CurrencyId.ELITE_MOBS, EliteMobsCurrency::new));
 
