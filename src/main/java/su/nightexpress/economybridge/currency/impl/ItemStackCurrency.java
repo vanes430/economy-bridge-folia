@@ -1,3 +1,5 @@
+package su.nightexpress.economybridge.currency.impl;
+
 import su.nightexpress.economybridge.EconomyBridge;
 
 import org.bukkit.entity.Player;
