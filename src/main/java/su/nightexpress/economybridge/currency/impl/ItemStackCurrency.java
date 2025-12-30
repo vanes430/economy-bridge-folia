@@ -61,7 +61,7 @@ public class ItemStackCurrency extends AbstractCurrency {
 
     @Override
     public void give(@NotNull Player player, double amount) {
-        Players.addItem(player, this.getItem(), (int) amount);
+        EconomyBridge.getPlugin().runTaskAtPlayer(player, () -> Players.addItem(player, this.getItem(), (int) amount));
     }
 
     @Override
